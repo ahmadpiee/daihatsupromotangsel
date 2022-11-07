@@ -1,19 +1,18 @@
+import { NextPage } from 'next'
 import React from 'react'
 import Layout from '@components/global/layout'
 import { useRouter } from 'next/router'
 import { localize } from '@utils/lib/formatter'
-import dynamic from 'next/dynamic'
+import { Text } from '@chakra-ui/react'
 
-const LandingPage = dynamic(() => import('@components/template/LandingPage'))
-
-const Home = () => {
+const Contact: NextPage = () => {
   const { locale } = useRouter()
 
   return (
-    <Layout title={localize(locale, 'home')}>
-      <LandingPage />
+    <Layout title={localize(locale, 'contact')}>
+      <Text>{localize(locale, 'contact')}</Text>
     </Layout>
   )
 }
 
-export default Home
+export default Contact

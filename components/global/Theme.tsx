@@ -3,8 +3,8 @@ import { ChakraConfig } from '@utils/dist/interface/chakra-config'
 import { mode } from '@chakra-ui/theme-tools'
 
 const config: ChakraConfig = {
-  initialColorMode: 'dark',
-  useSystemColorMode: true,
+  initialColorMode: 'light',
+  useSystemColorMode: false,
 }
 
 export const colors = {
@@ -43,9 +43,9 @@ const theme = extendTheme({
   config,
   styles,
   fonts: {
-    heading: `'Lato', sans-serif`,
-    body: `'Lato', sans-serif`,
-    arabic: `'Noto Naskh Arabic', sans-serif`,
+    heading: `'Poppins', sans-serif`,
+    body: `'Poppins', sans-serif`,
+    // arabic: `'Noto Naskh Arabic', sans-serif`,
   },
   fontSizes: {
     xs: '0.75rem',

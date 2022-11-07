@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '@components/global/Layout'
+import Layout from '@components/global/layout'
 import { useRouter } from 'next/router'
 import { localize } from '@utils/lib/formatter'
 import { NextPage } from 'next'

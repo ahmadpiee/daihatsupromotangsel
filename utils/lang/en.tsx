@@ -13,11 +13,11 @@ const en = {
   basmallah: 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
   arRum:
     'And of His signs is that He created for you from yourselves mates that you may find tranquillity in them; and He placed between you affection and mercy. Indeed in that are signs for a people who give thought. (AR-RUM:21)',
-  footer: 'Sincerely Made By ❤️ & Coffee',
-  gallery: 'Collage',
-  intro: 'Intro',
+  footer: '©2022-2023 | Powered by',
+  gallery: 'gallery',
+  intro: 'Your Favourite Daihatsu Car',
   video: 'Documentaion',
-  location: 'location',
+  contact: 'contact',
   page: 'page',
   locationInfo: `event's location`,
   //

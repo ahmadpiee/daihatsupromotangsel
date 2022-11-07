@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: 
+
+# Host
+Host: https://daihatsupromotangsel.com
+
+# Sitemaps
+Sitemap: https://daihatsupromotangsel.com/sitemap.xml
+Sitemap: https://daihatsupromotangsel.com/sitemap-1.xml

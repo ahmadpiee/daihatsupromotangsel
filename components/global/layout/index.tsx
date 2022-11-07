@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = props => {
         initial="hidden"
         animate="show"
       >
-        <Container maxW="container.lg" pt={{ base: 14 }}>
+        <Container maxW="container.xl" pt={{ base: 14 }}>
           {children}
         </Container>
       </motion.div>
