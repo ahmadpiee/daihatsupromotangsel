@@ -158,7 +158,7 @@ const Header: React.FC = props => {
               locale="en"
             >
               <IconButton size="xs" bg="transparent" aria-label="button">
-                <Image layout="fill" alt="Id Flag" src={EnFlag} />
+                <Image alt="Id Flag" src={EnFlag} />
               </IconButton>
             </Link>
           ) : null}
