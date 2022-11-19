@@ -6,7 +6,6 @@ import { Box, BoxProps, Container } from '@chakra-ui/react'
 
 interface LayoutProps extends BoxProps {
   children?: any
-  className?: string
   title?: string
   description?: string
   keywords?: string
