@@ -12,19 +12,27 @@ import {
 } from 'redux-persist'
 import { persistConfig, rootReducer } from '@store/reducers/index'
 import logger from 'redux-logger'
+import { useDispatch } from 'react-redux'
+import { isNotProduction } from '@utils/helpers/process-env'
 
-const isNotProd = process.env.NODE_ENV !== 'production'
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const reducers = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: defaultMiddleware =>
-    defaultMiddleware({
+  reducer: reducers,
+  middleware: defaultMiddleware => {
+    if (isNotProduction) {
+      return defaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(logger)
+    }
+    return defaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger),
+    })
+  },
 })
 
 const makeStore = () => store
@@ -32,9 +40,12 @@ const makeStore = () => store
 export const persistor = persistStore(store)
 export const wrapper = createWrapper(
   makeStore,
-  isNotProd ? { debug: false } : { debug: false },
+  isNotProduction ? { debug: true } : { debug: false },
 )
 
-// type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-// export const selectAuth = (state: RootState) => state.auth
+export const useAppDispatch: () => AppDispatch = useDispatch
+type RootState = ReturnType<typeof store.getState>
+export const selectLinks = (state: RootState) => state.links
+export const selectCatalogs = (state: RootState) => state.catalogs
+export const selectCatalogById = (state: RootState) => state.catalogById

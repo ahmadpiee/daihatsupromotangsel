@@ -9,9 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence } from 'framer-motion'
 import { isNotDevelopment } from '@utils/helpers/process-env'
 import theme from '@components/global/Theme'
-import useLoading from '@hooks/useLoading'
 import { PersistGate } from 'redux-persist/integration/react'
-import { persistor, store } from '@store/index'
+import { persistor, wrapper } from '@store/index'
 import { Provider } from 'react-redux'
 
 const Header = dynamic(() => import('@components/global/header/index'), {
@@ -40,30 +39,27 @@ const DisableConsole = () => {
   }
 }
 
-export default function App({ Component, pageProps, router }: AppProps) {
-  const { loading } = useLoading()
+export default function App({ Component, router, ...rest }: AppProps) {
+  const { store, props } = wrapper.useWrappedStore(rest)
+  const { pageProps } = props
 
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <ChakraProvider theme={theme}>
-          <Header />
           <Head>
             <meta
               name="viewport"
               content="width=device-width, initial-scale=1, shrink-to-fit=no"
             />
           </Head>
+          <Header />
           <div style={{ overflow: 'hidden', minHeight: '90vh' }}>
             <AnimatePresence>
-              {loading ? (
-                <ProgressIndetermine />
-              ) : (
-                <Component
-                  {...pageProps}
-                  key={router.route && DisableConsole()}
-                />
-              )}
+              <Component
+                {...pageProps}
+                key={router.route && DisableConsole()}
+              />
             </AnimatePresence>
             <ScrollToTop />
           </div>

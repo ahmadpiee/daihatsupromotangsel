@@ -1,11 +1,26 @@
-import { combineReducers } from 'redux'
+import { combineReducers, AnyAction } from '@reduxjs/toolkit'
 import storage from '@store/storage'
-import { PayloadAction } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
-const reducers = combineReducers({})
+// reducers
 
-export const rootReducer = (state: any, action: PayloadAction<string>) => {
-  return reducers(state, action)
+const combineReducer = combineReducers({
+  // [linkSlice.name]: linkSlice.reducer,
+})
+
+export const rootReducer = (
+  state: ReturnType<typeof combineReducer>,
+  action: AnyAction,
+) => {
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state, // use previous state
+      ...action.payload, // apply delta from hydration
+    }
+    return nextState
+  } else {
+    return combineReducer(state, action)
+  }
 }
 
 export const persistConfig = {

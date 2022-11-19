@@ -1,11 +1,3 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   reactStrictMode: true,
-//   swcMinify: true,
-// }
-
-// module.exports = nextConfig
-
 const runtimeCaching = require('next-pwa/cache')
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -27,9 +19,20 @@ module.exports = WithPWA({
     defaultLocale: 'id',
     localeDetection: false,
   },
-  // images: {
-  //   domains: ['jannahfirdaus-image-cloud.s3.ap-southeast-1.amazonaws.com'],
-  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        // port: '',
+        // pathname: '/account123/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'asset.cloudinary.com',
+      },
+    ],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g|mp4)$/i,
