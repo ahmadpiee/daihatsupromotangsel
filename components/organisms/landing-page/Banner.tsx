@@ -63,7 +63,7 @@ const Banner: React.FC = () => {
   const { locale } = useRouter()
   const [isLarger1000] = useMediaQuery('(min-width: 1000px)')
   const { colorMode } = useColorMode()
-  const router = useRouter()
+  // const router = useRouter()
 
   return (
     <Container
