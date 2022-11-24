@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { colors } from '@components/global/Theme'
 import { useColorMode } from '@chakra-ui/react'
+import Link from 'next/link'
 
 const BannerCarousel = dynamic(
   () => import('@components/organisms/carousel/BannerCarousel'),
@@ -120,14 +121,15 @@ const Banner: React.FC = () => {
                         {bannerData?.description}
                       </Text>
                       <Flex justifyContent="flex-end">
-                        <AppButton
-                          mt="1rem"
-                          borderRadius="2xl"
-                          leftIcon={<BsWhatsapp />}
-                          onClick={() => router.push(bannerData?.link)}
-                        >
-                          {localize(locale, 'contactUs')}
-                        </AppButton>
+                        <Link href={bannerData?.link} target="_blank">
+                          <AppButton
+                            mt="1rem"
+                            borderRadius="2xl"
+                            leftIcon={<BsWhatsapp />}
+                          >
+                            {localize(locale, 'contactUs')}
+                          </AppButton>
+                        </Link>
                       </Flex>
                     </Box>
                   </>
