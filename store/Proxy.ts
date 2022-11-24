@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const API_URL = process.env.NEXT_PUBLIC_STRAPI || 'http://localhost:1337'
-// const API_URL = process.env.NEXT_PUBLIC_STRAPI_LOCALHOST
+const API_URL = process.env.NEXT_PUBLIC_STRAPI
 
 const Token = process.env.NEXT_PUBLIC_STRAPI_TOKEN
 
