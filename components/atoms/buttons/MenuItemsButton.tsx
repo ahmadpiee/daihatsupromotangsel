@@ -1,12 +1,11 @@
 import React from 'react'
-import { Button } from '@chakra-ui/react'
+import { Button, ButtonProps } from '@chakra-ui/react'
 
-interface ButtonProps {
+export interface MenuItemsButtonProps extends ButtonProps {
   children?: any
   onClick?: () => void
 }
-
-const MenuItemsButton: React.FC<ButtonProps> = props => {
+const MenuItemsButton: React.FC<MenuItemsButtonProps> = props => {
   const { children, onClick } = props
   return (
     <>

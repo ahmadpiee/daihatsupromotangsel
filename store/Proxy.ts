@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-// const API_URL =
-//   process.env.NEXT_PUBLIC_STRAPI || process.env.NEXT_PUBLIC_STRAPI_LOCAL
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_LOCALHOST
+const API_URL = process.env.NEXT_PUBLIC_STRAPI || 'http://localhost:1337'
+// const API_URL = process.env.NEXT_PUBLIC_STRAPI_LOCALHOST
 
 const Token = process.env.NEXT_PUBLIC_STRAPI_TOKEN
 
@@ -18,6 +17,8 @@ export const endPoint = {
   // --- collection types ---
   categories: `/api/categories?populate=deep,5`,
   biolink: `/api/biolinks?populate=deep`,
-  catalogs: `/api/catalogs?populate=deep`,
-  catalog: `/api/catalogs`,
+  products: `/api/products?populate=deep`,
+  product: `/api/products`,
+  // --- single types ---
+  banner: `/api/banner?populate=deep`,
 }

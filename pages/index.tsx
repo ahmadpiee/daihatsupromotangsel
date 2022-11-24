@@ -1,30 +1,29 @@
 import React from 'react'
-import Layout from '@components/global/layout'
-import { useRouter } from 'next/router'
-import { localize } from '@utils/lib/formatter'
 import dynamic from 'next/dynamic'
 import { wrapper } from '@store/index'
 import { GetServerSideProps } from 'next'
-import { getLinks } from '@store/slice/linkSlice'
+import { getProducts } from '@store/slice/productSlice'
+import { getBanners } from '@store/slice/bannerSlice'
 
-const LandingPage = dynamic(() => import('@components/template/LandingPage'))
+const LandingPage = dynamic(
+  () => import('@components/template/landing-page/LandingPage'),
+)
 
 const Home = () => {
-  const { locale } = useRouter()
-
   return (
-    <Layout title={localize(locale, 'home')}>
+    <>
       <LandingPage />
-    </Layout>
+    </>
   )
 }
 
 export default Home
 
-// export const getServerSideProps: GetServerSideProps =
-//   wrapper.getServerSideProps(store => async () => {
-//     await store.dispatch(getLinks())
-//     return {
-//       props: {},
-//     }
-//   })
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps(store => async () => {
+    await store.dispatch(getBanners())
+    await store.dispatch(getProducts())
+    return {
+      props: {},
+    }
+  })

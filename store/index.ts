@@ -47,5 +47,6 @@ export type AppDispatch = typeof store.dispatch
 export const useAppDispatch: () => AppDispatch = useDispatch
 type RootState = ReturnType<typeof store.getState>
 export const selectLinks = (state: RootState) => state.links
-export const selectCatalogs = (state: RootState) => state.catalogs
-export const selectCatalogById = (state: RootState) => state.catalogById
+export const selectProducts = (state: RootState) => state.products
+export const selectProductBySlug = (state: RootState) => state.productBySlug
+export const selectBanners = (state: RootState) => state.banners

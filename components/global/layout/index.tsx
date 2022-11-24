@@ -1,10 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import { pageAnimation } from '@components/atoms/animations/index'
-import { motion } from 'framer-motion'
-import { Box, BoxProps, Container } from '@chakra-ui/react'
+import { Container, ContainerProps } from '@chakra-ui/react'
 
-interface LayoutProps extends BoxProps {
+interface LayoutProps extends ContainerProps {
   children?: any
   title?: string
   description?: string
@@ -14,9 +12,11 @@ interface LayoutProps extends BoxProps {
 const Layout: React.FC<LayoutProps> = props => {
   const { children, title, description, keywords } = props
   return (
-    <Box {...props} as="main">
+    <>
       <Head>
-        <title>{title + ' ' + 'official website daihatsupromotangsel'}</title>
+        <title>
+          {title + ' - ' + 'Official Website Daihatsu Promo Tangsel'}
+        </title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta
@@ -24,24 +24,16 @@ const Layout: React.FC<LayoutProps> = props => {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      <motion.div
-        exit="exit"
-        variants={pageAnimation}
-        initial="hidden"
-        animate="show"
-      >
-        <Container maxW="container.xl" pt={{ base: 14 }}>
-          {children}
-        </Container>
-      </motion.div>
-    </Box>
+      <Container maxW="full" p={0} {...props}>
+        {children}
+      </Container>
+    </>
   )
 }
 
 export default Layout
 
 Layout.defaultProps = {
-  title: `daihatsupromotangsel.com`,
   description: 'daihatsu, promo, tangsel, promo daihatsu, daihatsu tangsel',
   keywords: 'daihatsu, promo, tangsel, promo daihatsu, daihatsu tangsel',
 }

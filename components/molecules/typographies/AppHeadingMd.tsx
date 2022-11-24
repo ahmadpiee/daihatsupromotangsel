@@ -7,11 +7,11 @@ const AppHeadingMd: React.FC<HeadingProps> = props => {
     <Heading
       {...props}
       mb={{
-        base: '15',
-        xl: '12.5',
-        lg: '11.5',
-        md: '10',
-        sm: '8.5',
+        base: '1rem',
+        xl: '2rem',
+        lg: '1.75rem',
+        md: '1.5rem',
+        sm: '1.25rem',
       }}
       size="md"
     >

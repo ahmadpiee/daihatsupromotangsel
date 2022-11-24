@@ -31,7 +31,7 @@ const initialState: headerState = {
   error: null,
 }
 
-const linkSlice = createSlice({
+export const linksReducer = createSlice({
   name: 'links',
   initialState,
   reducers: {},
@@ -52,5 +52,3 @@ const linkSlice = createSlice({
     })
   },
 })
-
-export default linkSlice

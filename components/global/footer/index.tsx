@@ -19,10 +19,10 @@ const Footer: React.FC = () => {
           >
             {localize(locale, 'footer')}{' '}
             <Link
-              href={'https://www.instagram.com/racunkoding/'}
+              href={'https://www.instagram.com/asof.dev/'}
               target={'_blank'}
             >
-              racunkoding
+              asof.dev
             </Link>
           </Text>
         </Center>

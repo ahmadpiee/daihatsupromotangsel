@@ -1,4 +1,5 @@
 import '@fontsource/poppins'
+import '@fontsource/dm-sans'
 
 //
 import React from 'react'
@@ -26,11 +27,6 @@ const Footer = dynamic(() => import('@components/global/footer/index'), {
   ssr: false,
 })
 
-const ProgressIndetermine = dynamic(
-  () => import('@components/atoms/progress-indicators/ProgressIndetermine'),
-  { ssr: false },
-)
-
 const Chat = dynamic(() => import('@components/global/chat'), { ssr: false })
 
 const DisableConsole = () => {
@@ -54,7 +50,7 @@ export default function App({ Component, router, ...rest }: AppProps) {
             />
           </Head>
           <Header />
-          <div style={{ overflow: 'hidden', minHeight: '90vh' }}>
+          <div style={{ overflow: 'hidden', minHeight: '70vh' }}>
             <AnimatePresence>
               <Component
                 {...pageProps}

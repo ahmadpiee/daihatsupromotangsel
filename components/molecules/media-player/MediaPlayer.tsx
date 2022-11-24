@@ -11,7 +11,7 @@ const MediaPlayer: React.FC<ReactPlayerProps> = props => {
         width="100%"
         controls={true}
         playing={true}
-        loop={true}
+        loop={false}
         url={url}
         light={light}
         {...props}

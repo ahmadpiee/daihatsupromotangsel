@@ -15,6 +15,7 @@ export const colors = {
   },
   blue: {
     main: '#001aff',
+    light: '#12bddb',
   },
   white: {
     main: '#FFFFFF',
@@ -22,9 +23,15 @@ export const colors = {
   pinkGradient:
     'radial-gradient(circle, rgba(242,246,255,1) 0%, rgba(179,119,193,1) 100%)',
   whiteGradient:
-    'linear-gradient(90deg, rgba(209,195,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,230,251,1) 100%)',
+    'linear-gradient(90deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(233,233,233,1) 100%)',
   darkGradient:
-    'linear-gradient(90deg, rgba(8,0,9,1) 0%, rgba(38,16,61,1) 50%, rgba(5,6,15,1) 100%)',
+    'linear-gradient(90deg, rgba(38,47,58,1) 0%, rgba(16,17,26,1) 50%, rgba(38,47,58,1) 100%)',
+  BlueTopFade:
+    'linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(255,255,255,1) 100%)',
+  GreyTopFade:
+    'linear-gradient(0deg, rgba(77,77,77,1) 0%, rgba(255,255,255,1) 100%)',
+  BlackTopFade:
+    'linear-gradient(0deg, rgba(0,0,0,1) 23%, rgba(255,255,255,1) 100%)',
 }
 
 const styles = {
@@ -44,7 +51,7 @@ const theme = extendTheme({
   styles,
   fonts: {
     heading: `'Poppins', sans-serif`,
-    body: `'Poppins', sans-serif`,
+    body: `'DM Sans', sans-serif`,
     // arabic: `'Noto Naskh Arabic', sans-serif`,
   },
   fontSizes: {
