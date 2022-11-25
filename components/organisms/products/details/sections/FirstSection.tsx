@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { selectProductBySlug } from '@store/index'
 import dynamic from 'next/dynamic'
 import {
+  BreadcrumbItem,
   Button,
   Container,
   Divider,
@@ -17,7 +18,6 @@ import { CurrencyIDR, localize } from '@utils/lib/formatter'
 import { FcInfo, FcDownload } from 'react-icons/fc'
 import { useRouter } from 'next/router'
 import { colors } from '@components/global/Theme'
-import RenderVideoPlayerCar from './RenderVideoPlayerCar'
 import Link from 'next/link'
 
 const ImageCarousel = dynamic(
@@ -26,25 +26,32 @@ const ImageCarousel = dynamic(
 const RenderSpecificationCar = dynamic(
   () =>
     import(
-      '@components/template/product-details/product-details-component/first-section/RenderSpecificationCar'
+      '@components/organisms/products/details/section-components/RenderSpecificationCar'
     ),
   { ssr: false },
 )
 const RenderDescriptionCar = dynamic(
   () =>
     import(
-      '@components/template/product-details/product-details-component/first-section/RenderDescriptionCar'
+      '@components/organisms/products/details/section-components/RenderDescriptionCar'
     ),
   { ssr: false },
 )
 
+const RenderVideoPlayerCar = dynamic(
+  () =>
+    import(
+      '@components/organisms/products/details/section-components/RenderVideoPlayerCar'
+    ),
+  { ssr: false },
+)
+const RoutesPage = dynamic(() => import('@components/molecules/route-pages/'), {
+  ssr: false,
+})
+
 const FirstSection: React.FC = () => {
   const { productBySlug, productBySlugImages, productLinkBrosur } =
     useSelector(selectProductBySlug)
-  const product = useSelector(selectProductBySlug)
-
-  console.log('PRODUCT AJA', product)
-  console.log('PRODUCT BY SLUG', productBySlug)
 
   const { locale } = useRouter()
   const [isLarger1280] = useMediaQuery('(min-width: 1280px)')
@@ -66,6 +73,15 @@ const FirstSection: React.FC = () => {
         }}
       >
         <Container maxW="container.md">
+          <RoutesPage
+            pagename={localize(locale, 'productsRoute')}
+            endpoint="/products"
+            components={
+              <BreadcrumbItem>
+                <Text>{productBySlug?.attributes?.name}</Text>
+              </BreadcrumbItem>
+            }
+          />
           <ImageCarousel
             images={productBySlugImages}
             bg={colors.BlackTopFade}

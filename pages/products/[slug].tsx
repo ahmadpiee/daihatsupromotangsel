@@ -5,7 +5,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 
 const ProductDetailsPage = dynamic(
-  () => import('@components/template/product-details/ProductDetailsPage'),
+  () => import('@components/template/products/details'),
   { ssr: false },
 )
 

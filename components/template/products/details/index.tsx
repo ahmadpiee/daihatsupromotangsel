@@ -9,10 +9,7 @@ import { motion } from 'framer-motion'
 import { pageAnimation } from '@components/atoms/animations'
 
 const FirstSection = dynamic(
-  () =>
-    import(
-      '@components/template/product-details/product-details-component/first-section/FirstSection'
-    ),
+  () => import('@components/organisms/products/details/sections/FirstSection'),
   { ssr: false },
 )
 

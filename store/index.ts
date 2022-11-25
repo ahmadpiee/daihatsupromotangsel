@@ -50,3 +50,5 @@ export const selectLinks = (state: RootState) => state.links
 export const selectProducts = (state: RootState) => state.products
 export const selectProductBySlug = (state: RootState) => state.productBySlug
 export const selectBanners = (state: RootState) => state.banners
+export const selectArticles = (state: RootState) => state.articles
+export const selectArticleById = (state: RootState) => state.articleById

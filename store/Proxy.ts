@@ -18,6 +18,8 @@ export const endPoint = {
   biolink: `/api/biolinks?populate=deep`,
   products: `/api/products?populate=deep`,
   product: `/api/products`,
+  articles: `/api/articles?sort[0]=publish:desc&populate=*`,
+  article: `/api/article`,
   // --- single types ---
   banner: `/api/banner?populate=deep`,
 }
