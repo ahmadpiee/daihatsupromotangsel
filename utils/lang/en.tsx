@@ -17,6 +17,7 @@ const en = {
   product: 'Products',
   contact: 'Contact',
   article: 'Articles',
+  location: 'Location',
   // product details
   description: 'Descrtiption',
   otrPrice: 'OTR Price',
@@ -32,6 +33,7 @@ const en = {
   a: 'A',
   // etc
   underDev: 'This feature is under development',
+  urlShare: 'Share this article',
 }
 
 export default en

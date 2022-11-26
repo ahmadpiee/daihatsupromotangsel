@@ -59,7 +59,7 @@ export default function App({ Component, router, ...rest }: AppProps) {
             </AnimatePresence>
             <ScrollToTop />
           </div>
-          <Chat />
+          {router.pathname === '/' && <Chat />}
           <Footer />
         </ChakraProvider>
       </PersistGate>

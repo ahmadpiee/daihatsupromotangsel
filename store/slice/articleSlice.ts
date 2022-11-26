@@ -6,8 +6,8 @@ export const getArticles = createAsyncThunk(
   'articles/getAll',
   async (_, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const response = await Proxy.get(endPoint.articles)
-      return fulfillWithValue(response.data)
+      const res = await Proxy.get(endPoint.articles)
+      return fulfillWithValue(res.data)
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message)
@@ -17,6 +17,7 @@ export const getArticles = createAsyncThunk(
     }
   },
 )
+
 export const getArticleById = createAsyncThunk(
   'articles/byId',
   async (id: any, { fulfillWithValue, rejectWithValue }) => {

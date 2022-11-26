@@ -186,7 +186,7 @@ const Header: React.FC = props => {
                   locale="id"
                 >
                   <IconButton size="xs" bg="transparent" aria-label="button">
-                    <Image alt="Id Flag" src={IdFlag} />
+                    <Image alt="Id Flag" src={EnFlag} />
                   </IconButton>
                 </Link>
               ) : router.locale == 'id' ? (
@@ -199,7 +199,7 @@ const Header: React.FC = props => {
                   locale="en"
                 >
                   <IconButton size="xs" bg="transparent" aria-label="button">
-                    <Image alt="Id Flag" src={EnFlag} />
+                    <Image alt="Id Flag" src={IdFlag} />
                   </IconButton>
                 </Link>
               ) : null}

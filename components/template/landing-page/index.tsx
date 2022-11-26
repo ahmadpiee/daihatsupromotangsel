@@ -15,6 +15,10 @@ const CarsMarquee = dynamic(
   () => import('@components/organisms/landing-page/CarsMarquee'),
   { ssr: false },
 )
+const Location = dynamic(
+  () => import('@components/organisms/landing-page/Location'),
+  { ssr: false },
+)
 
 const LandingPage: React.FC = () => {
   const { locale } = useRouter()
@@ -24,6 +28,7 @@ const LandingPage: React.FC = () => {
       <CarsMarquee />
       <Layout maxW="8xl" p="0.75rem" title={localize(locale, 'home')}>
         <ProductList />
+        <Location />
       </Layout>
     </>
   )

@@ -18,6 +18,7 @@ const id = {
   contactUs: 'Hubungi Kami',
   description: 'Deskripsi',
   otrPrice: 'Harga OTR',
+  location: 'Lokasi',
 
   // navbar
   product: 'Produk',
@@ -37,6 +38,7 @@ const id = {
   a: 'A',
   // etc
   underDev: 'Fitur ini masih dalam pengembangan',
+  urlShare: 'Bagikan artikel ini',
 }
 
 export default id

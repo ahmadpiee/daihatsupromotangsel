@@ -1,12 +1,17 @@
 import { wrapper } from '@store/index'
 import { getArticleById } from '@store/slice/articleSlice'
 import { GetServerSideProps, NextPage } from 'next'
-import UnderDevelopment from '@components/molecules/statements/UnderDevelopment'
+import dynamic from 'next/dynamic'
+
+const ArticleDetailsTemplate = dynamic(
+  () => import('@components/template/articles/details/index'),
+  { ssr: false },
+)
 
 const ArticleDetailsPage: NextPage = () => {
   return (
     <>
-      <UnderDevelopment />
+      <ArticleDetailsTemplate />
     </>
   )
 }
@@ -14,8 +19,8 @@ const ArticleDetailsPage: NextPage = () => {
 export default ArticleDetailsPage
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps(store => async ({ query: { id } }) => {
-    await store.dispatch(getArticleById(id))
+  wrapper.getServerSideProps(store => async ctx => {
+    await store.dispatch(getArticleById(ctx.query.id))
     return {
       props: {},
     }

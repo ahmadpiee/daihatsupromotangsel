@@ -73,15 +73,17 @@ const FirstSection: React.FC = () => {
         }}
       >
         <Container maxW="container.md">
+          <Divider />
           <RoutesPage
             pagename={localize(locale, 'productsRoute')}
-            endpoint="/products"
+            endpoint="/"
             components={
               <BreadcrumbItem>
                 <Text>{productBySlug?.attributes?.name}</Text>
               </BreadcrumbItem>
             }
           />
+          <Divider mb={{ base: '1rem' }} />
           <ImageCarousel
             images={productBySlugImages}
             bg={colors.BlackTopFade}

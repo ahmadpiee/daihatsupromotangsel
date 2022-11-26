@@ -19,7 +19,8 @@ export const endPoint = {
   products: `/api/products?populate=deep`,
   product: `/api/products`,
   articles: `/api/articles?sort[0]=publish:desc&populate=*`,
-  article: `/api/article`,
+  article: `/api/articles`,
+  articlesPage: `/api/articles`,
   // --- single types ---
   banner: `/api/banner?populate=deep`,
 }

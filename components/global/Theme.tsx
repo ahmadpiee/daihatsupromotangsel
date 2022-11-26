@@ -32,6 +32,8 @@ export const colors = {
     'linear-gradient(0deg, rgba(77,77,77,1) 0%, rgba(255,255,255,1) 100%)',
   BlackTopFade:
     'linear-gradient(0deg, rgba(0,0,0,1) 23%, rgba(255,255,255,1) 100%)',
+  facebook: '#1977F3',
+  twitter: '#1DA1F2',
 }
 
 const styles = {

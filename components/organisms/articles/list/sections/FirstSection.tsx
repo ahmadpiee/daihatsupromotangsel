@@ -40,13 +40,13 @@ const FirstSection: React.FC = () => {
             return (
               <ArticleCard
                 key={i}
+                id={val?.id}
                 src={val?.attributes?.thumbnail?.data?.attributes?.url}
                 title={val?.attributes?.title}
-                id={val?.attributes?.id}
                 description={val?.attributes?.description}
-                mb={{ base: '1rem' }}
                 author={val?.attributes?.author}
                 publishdate={val?.attributes?.publish}
+                mb={{ base: '1rem' }}
               />
             )
           })}
