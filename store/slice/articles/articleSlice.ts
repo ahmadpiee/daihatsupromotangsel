@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Proxy, { endPoint } from '@store/Proxy'
-import axios from 'axios'
 
 export const getArticles = createAsyncThunk(
   'articles/getAll',
@@ -11,29 +10,6 @@ export const getArticles = createAsyncThunk(
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message)
-      } else {
-        return rejectWithValue(error.message)
-      }
-    }
-  },
-)
-
-export const getArticleById = createAsyncThunk(
-  'articles/byId',
-  async (id: any, { fulfillWithValue, rejectWithValue }) => {
-    const cancelToken = axios.CancelToken.source()
-    try {
-      const response = await Proxy.get(
-        endPoint.article + `/${id}?populate=deep`,
-        { cancelToken: cancelToken.token },
-      )
-      return fulfillWithValue(response.data)
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
-      } else if (axios.isCancel(error)) {
-        console.log('canceled!', error.message)
-        return cancelToken.cancel()
       } else {
         return rejectWithValue(error.message)
       }
@@ -110,43 +86,6 @@ export const articleSlice = createSlice({
       state.filteredArticle = payload
     })
     builder.addCase(getArticles.rejected, state => {
-      state.isLoading = false
-      state.isSuccess = false
-      state.error = true
-    })
-  },
-})
-
-type ArticleByIdState = {
-  articleById: {}
-  isLoading: boolean
-  isSuccess: boolean
-  error: boolean
-}
-
-const initialStateById: ArticleByIdState = {
-  articleById: {},
-  isLoading: false,
-  isSuccess: false,
-  error: false,
-}
-
-// by id
-export const articleByIdSlice = createSlice({
-  name: 'articleById',
-  initialState: initialStateById,
-  reducers: {},
-  extraReducers: builder => {
-    builder.addCase(getArticleById.pending, state => {
-      state.isLoading = true
-      state.isSuccess = false
-    })
-    builder.addCase(getArticleById.fulfilled, (state, { payload }) => {
-      state.isLoading = false
-      state.isSuccess = true
-      state.articleById = payload.data
-    })
-    builder.addCase(getArticleById.rejected, state => {
       state.isLoading = false
       state.isSuccess = false
       state.error = true
