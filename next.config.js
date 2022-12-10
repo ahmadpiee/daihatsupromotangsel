@@ -72,11 +72,11 @@ module.exports = WithPWA({
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN',
           },
-          {
-            key: 'Permissions-Policy',
-            value:
-              'camera=(https://daihatsupromotangsel.com), microphone=(https://daihatsupromotangsel.com), geolocation=(https://daihatsupromotangsel.com), interest-cohort=(https://daihatsupromotangsel.com), fullscreen=(https://daihatsupromotangsel.com)',
-          }, // change the link to real production domain or leave it empty see: https://www.w3.org/TR/permissions-policy-1/
+          // {
+          //   key: 'Permissions-Policy',
+          //   value:
+          //     'camera=(https://daihatsupromotangsel.com), microphone=(https://daihatsupromotangsel.com), geolocation=(https://daihatsupromotangsel.com), interest-cohort=(https://daihatsupromotangsel.com), fullscreen=(https://daihatsupromotangsel.com)',
+          // }, // change the link to real production domain or leave it empty see: https://www.w3.org/TR/permissions-policy-1/
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
