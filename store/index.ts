@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
 import {
   persistReducer,
@@ -12,13 +12,25 @@ import {
 } from 'redux-persist'
 import { persistConfig, rootReducer } from '@store/reducers/index'
 import logger from 'redux-logger'
-import { useDispatch } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { isNotProduction } from '@utils/helpers/process-env'
+
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch
+export type RootState = ReturnType<typeof store.getState>
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>
 
 const reducers = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
   reducer: reducers,
+  // preloadedState: incomingPreloadState,
   middleware: defaultMiddleware => {
     if (isNotProduction) {
       return defaultMiddleware({
@@ -43,12 +55,12 @@ export const wrapper = createWrapper(
   isNotProduction ? { debug: true } : { debug: false },
 )
 
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
-type RootState = ReturnType<typeof store.getState>
 export const selectLinks = (state: RootState) => state.links
 export const selectProducts = (state: RootState) => state.products
 export const selectProductBySlug = (state: RootState) => state.productBySlug
 export const selectBanners = (state: RootState) => state.banners
 export const selectArticles = (state: RootState) => state.articles
+export const selectSearchArticle = (state: RootState) => state.articles.search
+export const selectFilteredArticle = (state: RootState) =>
+  state.articles.filteredArticle
 export const selectArticleById = (state: RootState) => state.articleById

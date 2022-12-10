@@ -52,7 +52,7 @@ const ArticleCard: React.FC<ArticleCardProps> = props => {
           <Heading color={colors.black.main} size="sm">
             {title}
           </Heading>
-          <Box noOfLines={3} m={{ base: '0.75rem 0' }}>
+          <Box noOfLines={3} m={{ base: '0.75rem 0' }} textColor="black">
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
               {description}
             </ReactMarkdown>

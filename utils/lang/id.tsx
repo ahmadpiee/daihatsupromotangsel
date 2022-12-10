@@ -39,6 +39,7 @@ const id = {
   // etc
   underDev: 'Fitur ini masih dalam pengembangan',
   urlShare: 'Bagikan artikel ini',
+  searchArticle: 'cari artikel',
 }
 
 export default id

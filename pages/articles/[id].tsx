@@ -1,5 +1,5 @@
 import { wrapper } from '@store/index'
-import { getArticleById } from '@store/slice/articleSlice'
+import { getArticleById } from '@store/slice/articles/articleSlice'
 import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 

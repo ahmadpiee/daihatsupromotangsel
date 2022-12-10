@@ -34,6 +34,7 @@ const en = {
   // etc
   underDev: 'This feature is under development',
   urlShare: 'Share this article',
+  searchArticle: 'search article',
 }
 
 export default en

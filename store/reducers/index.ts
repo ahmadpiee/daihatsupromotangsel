@@ -6,15 +6,18 @@ import { HYDRATE } from 'next-redux-wrapper'
 import { productReducer, productBySlugReducer } from '@store/slice/productSlice'
 import { bannerReducer } from '@store/slice/bannerSlice'
 import { linksReducer } from '@store/slice/linkSlice'
-import { articlesReducer, articleByIdReducer } from '@store/slice/articleSlice'
+import {
+  articleSlice,
+  articleByIdSlice,
+} from '@store/slice/articles/articleSlice'
 
 const combineReducer = combineReducers({
   [productReducer.name]: productReducer.reducer,
   [productBySlugReducer.name]: productBySlugReducer.reducer,
   [bannerReducer.name]: bannerReducer.reducer,
   [linksReducer.name]: linksReducer.reducer,
-  [articlesReducer.name]: articlesReducer.reducer,
-  [articleByIdReducer.name]: articleByIdReducer.reducer,
+  [articleSlice.name]: articleSlice.reducer,
+  [articleByIdSlice.name]: articleByIdSlice.reducer,
 })
 
 export const rootReducer = (

@@ -2,10 +2,24 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { localize } from '@utils/lib/formatter'
 import { useRouter } from 'next/router'
-import { Divider, Text } from '@chakra-ui/react'
-import { useSelector } from 'react-redux'
-import { selectArticles } from '@store/index'
+import {
+  Divider,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Text,
+} from '@chakra-ui/react'
+import {
+  selectArticles,
+  selectFilteredArticle,
+  selectSearchArticle,
+  useAppDispatch,
+  useAppSelector,
+} from '@store/index'
 import LoadingCircle from '@components/atoms/progress-indicators/LoadingCircle'
+import { setSearch } from '@store/slice/articles/articleSlice'
+import { SearchIcon } from '@components/atoms/icons'
+import { colors } from '@components/global/Theme'
 
 const ArticleCard = dynamic(
   () => import('@components/molecules/cards/ArticleCard'),
@@ -18,7 +32,10 @@ const RoutePageDirection = dynamic(
 
 const FirstSection: React.FC = () => {
   const { locale } = useRouter()
-  const { articles, isLoading, error } = useSelector(selectArticles)
+  const dispatch = useAppDispatch()
+  const { isLoading, error } = useAppSelector(selectArticles)
+  const articles = useAppSelector(selectFilteredArticle)
+  const search = useAppSelector(selectSearchArticle)
 
   return (
     <>
@@ -32,11 +49,25 @@ const FirstSection: React.FC = () => {
           {error}
         </Text>
       )}
+      <InputGroup m={{ base: '2rem 0' }}>
+        <InputLeftElement>
+          <SearchIcon />
+        </InputLeftElement>
+        <Input
+          borderColor={colors.twitter}
+          placeholder={localize(locale, 'searchArticle')}
+          _placeholder={{ color: colors.twitter }}
+          value={search}
+          onChange={e => {
+            dispatch(setSearch(e.target.value))
+          }}
+        />
+      </InputGroup>
       {isLoading ? (
         <LoadingCircle />
       ) : (
         <>
-          {articles.map((val: any, i: any) => {
+          {articles.slice(0, 20).map((val: any, i: any) => {
             return (
               <ArticleCard
                 key={i}
