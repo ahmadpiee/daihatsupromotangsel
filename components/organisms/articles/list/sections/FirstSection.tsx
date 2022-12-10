@@ -67,7 +67,7 @@ const FirstSection: React.FC = () => {
         <LoadingCircle />
       ) : (
         <>
-          {articles.slice(0, 20).map((val: any, i: any) => {
+          {articles.map((val: any, i: any) => {
             return (
               <ArticleCard
                 key={i}
