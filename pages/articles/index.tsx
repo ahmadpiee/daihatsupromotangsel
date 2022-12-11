@@ -1,5 +1,6 @@
 import { wrapper } from '@store/index'
 import { getArticles } from '@store/slice/articles/articleSlice'
+import PrivateRoute from '@utils/helpers/hoc/PrivateRoute'
 import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 
@@ -10,9 +11,7 @@ const ArticleListTemplate = dynamic(
 
 const ArticlesPage: NextPage = () => {
   return (
-    <>
-      <ArticleListTemplate />
-    </>
+    <PrivateRoute allowedRoles={['public']} component={ArticleListTemplate} />
   )
 }
 

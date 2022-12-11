@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Proxy, { endPoint } from '@store/Proxy'
+import { apiWithToken, endPoint } from '@store/api'
 
 export const getArticles = createAsyncThunk(
   'articles/getAll',
   async (_, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const res = await Proxy.get(endPoint.articles)
+      const res = await apiWithToken.get(endPoint.articles)
       return fulfillWithValue(res.data.data)
     } catch (error) {
       if (error.response && error.response.data.message) {

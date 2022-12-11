@@ -4,11 +4,17 @@ const API_URL = process.env.NEXT_PUBLIC_STRAPI
 
 const Token = process.env.NEXT_PUBLIC_STRAPI_TOKEN
 
-export default axios.create({
+export const apiWithToken = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-type': 'application/json',
     Authorization: `Bearer ${Token}`,
+  },
+})
+export const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-type': 'application/json',
   },
 })
 

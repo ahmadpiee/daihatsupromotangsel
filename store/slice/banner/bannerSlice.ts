@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Proxy, { endPoint } from '@store/Proxy'
+import { apiWithToken, endPoint } from '@store/api'
 
-export const getLinks = createAsyncThunk(
-  'link/collectionTypes',
+export const getBanners = createAsyncThunk(
+  'banners/getAll',
   async (_, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const response = await Proxy.get(endPoint.biolink)
+      const response = await apiWithToken.get(endPoint.banner)
       return fulfillWithValue(response.data)
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -18,37 +18,43 @@ export const getLinks = createAsyncThunk(
 )
 
 interface headerState {
-  links: []
+  bannerImages: []
+  bannerData: {}
   isLoading: boolean
   isSuccess: boolean
   error: null
 }
 
 const initialState: headerState = {
-  links: [],
+  bannerImages: [],
+  bannerData: {},
   isLoading: false,
   isSuccess: false,
   error: null,
 }
 
-export const linksReducer = createSlice({
-  name: 'links',
+export const bannerSlice = createSlice({
+  name: 'banners',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getLinks.pending, state => {
+    builder.addCase(getBanners.pending, state => {
       state.isLoading = true
       state.isSuccess = false
     })
-    builder.addCase(getLinks.fulfilled, (state, action: PayloadAction<any>) => {
+    builder.addCase(getBanners.fulfilled, (state, { payload }) => {
       state.isLoading = false
       state.isSuccess = true
-      state.links = action.payload.data
+      state.bannerImages = payload.data?.attributes?.images?.data
+      state.bannerData = payload.data?.attributes
     })
-    builder.addCase(getLinks.rejected, (state, action: PayloadAction<any>) => {
-      state.isLoading = false
-      state.isSuccess = false
-      state.error = action.payload
-    })
+    builder.addCase(
+      getBanners.rejected,
+      (state, action: PayloadAction<any>) => {
+        state.isLoading = false
+        state.isSuccess = false
+        state.error = action.payload
+      },
+    )
   },
 })

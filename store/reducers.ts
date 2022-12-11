@@ -3,17 +3,18 @@ import storage from '@store/storage'
 import { HYDRATE } from 'next-redux-wrapper'
 
 // reducers
-import { productReducer, productBySlugReducer } from '@store/slice/productSlice'
-import { bannerReducer } from '@store/slice/bannerSlice'
-import { linksReducer } from '@store/slice/linkSlice'
+import { productSlice } from '@store/slice/products/productSlice'
+import { productBySlugSlice } from '@store/slice/products/productBySlugSlice'
+import { bannerSlice } from '@store/slice/banner/bannerSlice'
+import { linksSlice } from '@store/slice/links/linkSlice'
 import { articleSlice } from '@store/slice/articles/articleSlice'
 import { articleByIdSlice } from '@store/slice/articles/articleByIdSlice'
 
 const combineReducer = combineReducers({
-  [productReducer.name]: productReducer.reducer,
-  [productBySlugReducer.name]: productBySlugReducer.reducer,
-  [bannerReducer.name]: bannerReducer.reducer,
-  [linksReducer.name]: linksReducer.reducer,
+  [productSlice.name]: productSlice.reducer,
+  [productBySlugSlice.name]: productBySlugSlice.reducer,
+  [bannerSlice.name]: bannerSlice.reducer,
+  [linksSlice.name]: linksSlice.reducer,
   [articleSlice.name]: articleSlice.reducer,
   [articleByIdSlice.name]: articleByIdSlice.reducer,
 })

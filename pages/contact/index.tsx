@@ -5,7 +5,7 @@ import Layout from '@components/global/layout'
 import { useRouter } from 'next/router'
 import { localize } from '@utils/lib/formatter'
 import { Container, Heading } from '@chakra-ui/react'
-import { getLinks } from '@store/slice/linkSlice'
+import { getLinks } from '@store/slice/links/linkSlice'
 import { wrapper } from '@store/index'
 
 const LinkTemplate = dynamic(

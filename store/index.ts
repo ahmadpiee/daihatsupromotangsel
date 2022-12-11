@@ -10,27 +10,26 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-import { persistConfig, rootReducer } from '@store/reducers/index'
+import { persistConfig, rootReducer } from '@store/reducers'
 import logger from 'redux-logger'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { isNotProduction } from '@utils/helpers/process-env'
 
 export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
 export type RootState = ReturnType<typeof store.getState>
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
   Action<string>
 >
+// hooks
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 const reducers = persistReducer(persistConfig, rootReducer)
-
 export const store = configureStore({
   reducer: reducers,
-  // preloadedState: incomingPreloadState,
   middleware: defaultMiddleware => {
     if (isNotProduction) {
       return defaultMiddleware({
@@ -48,7 +47,6 @@ export const store = configureStore({
 })
 
 const makeStore = () => store
-
 export const persistor = persistStore(store)
 export const wrapper = createWrapper(
   makeStore,

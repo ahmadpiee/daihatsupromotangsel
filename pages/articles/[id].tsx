@@ -2,6 +2,7 @@ import { wrapper } from '@store/index'
 import { getArticleById } from '@store/slice/articles/articleByIdSlice'
 import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
+import PrivateRoute from '@utils/helpers/hoc/PrivateRoute'
 
 const ArticleDetailsTemplate = dynamic(
   () => import('@components/template/articles/details/index'),
@@ -10,9 +11,10 @@ const ArticleDetailsTemplate = dynamic(
 
 const ArticleDetailsPage: NextPage = () => {
   return (
-    <>
-      <ArticleDetailsTemplate />
-    </>
+    <PrivateRoute
+      component={ArticleDetailsTemplate}
+      allowedRoles={['public', 'admin']}
+    />
   )
 }
 

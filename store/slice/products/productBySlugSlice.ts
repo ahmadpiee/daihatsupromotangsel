@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { apiWithToken, endPoint } from '@store/api'
 
-export const getArticleById = createAsyncThunk(
-  'articles/byId',
-  async (id: any, { fulfillWithValue, rejectWithValue }) => {
+export const getProductBySlug = createAsyncThunk(
+  'products/bySlug',
+  async (slug: any, { fulfillWithValue, rejectWithValue }) => {
     try {
       const response = await apiWithToken.get(
-        endPoint.article + `/${id}?populate=deep`,
+        endPoint.product + `/${slug}?populate=deep`,
       )
       return fulfillWithValue(response.data)
     } catch (error) {
@@ -19,37 +19,43 @@ export const getArticleById = createAsyncThunk(
   },
 )
 
-type ArticleByIdState = {
-  articleById: {}
+type ProductBySlugState = {
+  productBySlug: {}
+  productLinkBrosur: string
+  productBySlugImages: []
   isLoading: boolean
   isSuccess: boolean
-  error: undefined
+  error: null
 }
 
-const initialStateById: ArticleByIdState = {
-  articleById: {},
+const initialState: ProductBySlugState = {
+  productBySlug: {},
+  productLinkBrosur: '',
+  productBySlugImages: [],
   isLoading: false,
   isSuccess: false,
   error: null,
 }
 
 // by id
-export const articleByIdSlice = createSlice({
-  name: 'articleById',
-  initialState: initialStateById,
+export const productBySlugSlice = createSlice({
+  name: 'productBySlug',
+  initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getArticleById.pending, state => {
+    builder.addCase(getProductBySlug.pending, state => {
       state.isLoading = true
       state.isSuccess = false
     })
-    builder.addCase(getArticleById.fulfilled, (state, { payload }) => {
+    builder.addCase(getProductBySlug.fulfilled, (state, { payload }) => {
       state.isLoading = false
       state.isSuccess = true
-      state.articleById = payload.data
+      state.productBySlug = payload.data
+      state.productLinkBrosur = payload.data?.attributes?.link_brosur
+      state.productBySlugImages = payload.data?.attributes?.images
     })
     builder.addCase(
-      getArticleById.rejected,
+      getProductBySlug.rejected,
       (state, action: PayloadAction<any>) => {
         state.isLoading = false
         state.isSuccess = false

@@ -2,8 +2,8 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { wrapper } from '@store/index'
 import { GetServerSideProps, NextPage } from 'next'
-import { getProducts } from '@store/slice/productSlice'
-import { getBanners } from '@store/slice/bannerSlice'
+import { getProducts } from '@store/slice/products/productSlice'
+import { getBanners } from '@store/slice/banner/bannerSlice'
 
 const LandingPage = dynamic(() => import('@components/template/landing-page'))
 
